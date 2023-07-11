@@ -37,7 +37,7 @@ css={{
 <Table.Header>
   <Table.Column>ID</Table.Column>
   <Table.Column>Grade Submit</Table.Column>
-  <Table.Column>Grade</Table.Column>
+ 
   <Table.Column>Firstname</Table.Column>
   <Table.Column>Lastname </Table.Column>
   <Table.Column>Email </Table.Column>
@@ -57,7 +57,8 @@ css={{
     <Table.Cell></Table.Cell>
     <Table.Cell></Table.Cell>
     <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
+    
+    
 
   </Table.Row>
 
@@ -75,7 +76,8 @@ css={{
             <Input id={`grade_` + item.id} labelPlaceholder={`grade_` + item.id}/>
             <Button type="button" onClick={(save) => saveData(item.id, courseid)}  size="xs">Save</Button>
         </Table.Cell>
-        <Table.Cell>{item.gradeValue} </Table.Cell>
+        
+        
         <Table.Cell>{item.firstname} </Table.Cell>
         <Table.Cell>{item.lastname} </Table.Cell>
         <Table.Cell>{item.email} </Table.Cell>
@@ -121,6 +123,9 @@ export async function getServerSideProps(context) {
       props: { data,courseid }, // will be passed to the page component as props
     }
   }
+  
+
+  
 
 
   
