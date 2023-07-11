@@ -8,164 +8,271 @@ import { Input } from "@nextui-org/react";
 import { Container, Card, Row, Text, Col, Spacer } from "@nextui-org/react";
 import { Button, Grid } from "@nextui-org/react";
 import { Link } from "@nextui-org/react";
+import { createTheme } from "@nextui-org/react"
+import React, {useState} from 'react';
 
 
 export default function Home({data}) {
+
+  
+  const getInitialState = () => {
+    const value = "";
+    return value;
+  };
+
+  const [value, setValue] = useState(getInitialState);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  }
+
+
+  ///////////////////////////// Login //////////////////////////////////
+
+  async function handleSubmit(event){
+  
+    alert("The form was submitted");
+    event.preventDefault();
+ 
+
+    
+    const name = document.querySelector('#username').value
+
+    console.log("username is " + name);
+
+    const pass = document.querySelector('#password').value
+
+    console.log("password is " + pass);
+
+    
+     const data = {
+       username: event.target.username.value,
+       password: event.target.password.value,
+     }
+ 
+    
+     const JSONdata = JSON.stringify(data)
+ 
+     const endpoint = '/api/login'
+
+     
+     const options = {
+      
+       method: 'POST',
+      
+       headers: {
+         'Content-Type': 'application/json',
+       },
+      
+       body: JSONdata,
+     }
+
+     const response = await fetch(endpoint, options)
+ 
+     const result = await response.json()
+     
+     alert(`server result: ${result}`)
+
+     router.push("/listAllCourses");
+
+  }
+
+   ///////////////////////////// Login End //////////////////////////////////
+
+
+  ///////////////////////////// Register //////////////////////////////////
+
+  async function handleSubmitReg(event){
+  
+    alert("The Student was registered");
+    event.preventDefault();
+ 
+ 
+ const data = {
+
+  firstName: event.target.firstName.value,
+  lastName: event.target.lastName.value,
+  email: event.target.email.value,
+  address: event.target.address.value,
+  telephone: event.target.telephone.value,
+  enrollid: event.target.enrollid.value,
+ 
+}
+ 
+    
+     const JSONdata = JSON.stringify(data)
+ 
+     const endpoint = '/api/register'
+
+     
+     const options = {
+      
+       method: 'POST',
+      
+       headers: {
+         'Content-Type': 'application/json',
+       },
+      
+       body: JSONdata,
+     }
+
+     const response = await fetch(endpoint, options)
+ 
+     const result = await response.json()
+     
+     alert(`server result: ${result}`)
+
+     router.push("/listAllCourses");
+
+     
+
+  }
+
+   ///////////////////////////// Register End //////////////////////////////////
+
+
+
+
+   
   const router = useRouter()
 
-
-  // Handle the submit for the form
-  async function handleSubmit(event) {
-
-       alert("The form was submitted");
-       event.preventDefault();
-    
-
-       // grab the variables from the form.
-       const name = document.querySelector('#username').value
-
-       console.log("username is " + name);
-
-       const pass = document.querySelector('#password').value
-
-       console.log("password is " + pass);
-
-
-
-
-
-        // Get data from the form.
-        const data = {
-          username: event.target.username.value,
-          password: event.target.password.value,
-        }
-    
-        // Send the data to the server in JSON format.
-        const JSONdata = JSON.stringify(data)
-    
-        // API endpoint where we send form data.
-        const endpoint = '/api/login'
-
-
-    
-        // Form the request for sending data to the server.
-        const options = {
-          // The method is POST because we are sending data.
-          method: 'POST',
-          // Tell the server we're sending JSON.
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          // Body of the request is the JSON data we created above.
-          body: JSONdata,
-        }
-
-        
-    
-        // Send the form data to our forms API on Vercel and get a response.
-        const response = await fetch(endpoint, options)
-    
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-        const result = await response.json()
-        
-        alert(`server result: ${result}`)
-
- 
-        router.push("/customer");
-
-
-    
-  }
   
-  
+  const MockItem = ({ text }) => {
+    return (
+      <Card css={{ h: "$24", $$cardColor: '$colors$primary' }}>
+        <Card.Body>
+          <Text h6 size={15} color="white" css={{ mt: 0 }}>
+            {text}
+          </Text>
+        </Card.Body>
+      </Card>
+    );
+  };
   return (
 
-    <NextUIProvider>
- <Container gap={0}>
+    
+
+    <NextUIProvider theme={theme}>
+      
+<Grid.Container gap={2} justify="center">
+      <Grid xs={4}>
+      
+      </Grid>
+      <Grid xs={4}>
+        
 
 
-      <Row gap={1}>
-        <Col>
-          <Card css={{ $$cardColor: '$colors$primary' }}>
-            <Card.Body>
-              <Text h6 size={25} color="white" css={{ m: 0 }}>
-                 Krispy Kreme
-              </Text>
-            </Card.Body>
-          </Card>
-        </Col>
+      <Card css={{ h: "$58", w: "$100", $$cardColor: '$colors$primary' }}>
+        <Card.Body>
+          <Text h6 size={15} color="white" css={{ mt: 0 }}>
+           Register a student to the system
+           
+           <ul>
+            <li>Course ID 1 - Computing</li>
+            <li> Course ID 2 - Science</li>
+            <li>Course ID 3 - Marketing</li>
+           </ul>
+
+           <form onSubmit={handleSubmitReg}>
+           <Spacer y={2} />
+<Input labelPlaceholder="First Name*" initialValue="" id="firstName" />
+
+<Spacer y={2} />
+<Input labelPlaceholder="Last Name*" initialValue="" id="lastName" />
+<Spacer y={2} />
+<Input labelPlaceholder="Email*" initialValue="" id="email" />
+<Spacer y={2} />
+<Input labelPlaceholder="Address*" initialValue="" id="address" />
+<Spacer y={2} />
+<Input labelPlaceholder="Telephone*" initialValue="" id="telephone" />
+<Spacer y={2} />
+<Input labelPlaceholder="Course ID*" initialValue="" id="enrollid" />
+<Spacer y={2} />
+
+
+<Spacer y={2} />
+<Button type="submit" color="secondary" auto>
+Register
+</Button>
+
+</form>
+
+      
+          </Text>
+        </Card.Body>
+      </Card>
+
+
+      </Grid>
+      <Grid xs={4}>
+        
+
+
+      <Card css={{ h: "$58", w: "$100", $$cardColor: '$colors$primary' }}>
+        <Card.Body>
+          <Text h6 size={15} color="white" css={{ mt: 0 }}>
+           Login to system
+           <Spacer y={2} />
+
+           <form onSubmit={handleSubmit}>
+           <Input id="username" placeholder="username"/>
+           <Spacer y={2} />
+           <Input id="password" placeholder="Password"/>
+           <Spacer y={2} />
+           <Button type="submit" color="secondary" auto>
+                      Login
+                    </Button>
+
+
        
-      </Row>
-      <Spacer y={1} />
+           </form>
+
+        
 
 
+        
+
+          </Text>
+        </Card.Body>
+      </Card>
 
 
-      <Row gap={1}>
-        <Col>
-          <Card css={{ $$cardColor: '$colors$primary' }}>
-            <Card.Body>
-              <Text h6 size={15} color="white" css={{ m: 0 }}>
-                1 of 3
-              </Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card css={{ $$cardColor: '$colors$primary' }}>
-            <Card.Body>
-              <Text h6 size={15} color="white" css={{ m: 0 }}>
-                  Login
-            </Text>
-
-            <Spacer y={5} />
-
-
-            <form onSubmit={handleSubmit}>
-
-              <Input  id="username" clearable bordered labelPlaceholder="Username" initialValue="" />
-             
-              <Spacer y={2} />
-              <Input id="password" clearable bordered labelPlaceholder="Password" initialValue="" />
-              
-              <Spacer y={2} />
-              <Button type="submit" color="secondary" auto>
-                Login
-              </Button>
-
-              </form>
-
-              <Link href="#">
-      "First solve the problem. Then, write the code." - Jon Johnson.
-    </Link>
-
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card css={{ $$cardColor: '$colors$primary' }}>
-            <Card.Body>
-              <Text h6 size={15} color="white" css={{ m: 0 }}>
-                3 of 3
-
-                <Link href="/customer" color="success">
-                <Button type="submit" color="secondary" auto>Register </Button>
-                </Link>
-
-
-
-
-              </Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+      </Grid>
+      
+    </Grid.Container>
 
     </NextUIProvider>
     
   )
 }
+
+const theme = createTheme({
+  type: "light", // it could be "light" or "dark"
+  theme: {
+    colors: {
+      // brand colors
+      primaryLight: '$green200',
+      primaryLightHover: '$green300',
+      primaryLightActive: '$green400',
+      primaryLightContrast: '$green600',
+      primary: '#4ADE7B',
+      primaryBorder: '$green500',
+      primaryBorderHover: '$green600',
+      primarySolidHover: '$green700',
+      primarySolidContrast: '$white',
+      primaryShadow: '$green500',
+
+      gradient: 'linear-gradient(112deg, $blue100 -25%, $pink500 -10%, $purple500 80%)',
+      link: '#5E1DAD',
+
+      // you can also create your own color
+      myColor: '#ff4ecd'
+
+      // ...  more colors
+    },
+    space: {},
+    fonts: {}
+  }
+})
 
 

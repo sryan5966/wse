@@ -4,13 +4,8 @@ export default function handler(req, res) {
 
   
 
-    var firstName = req.body.firstName;
-    var lastName = req.body.lastName;
-    var address = req.body.address;
-    var email = req.body.email;
-    var telephone = req.body.telephone;
-    var enrollid = req.body.enrollid;
-   
+              const sid = req.body.sid;
+             console.log(sid)
 
       // get the client
       const mysql = require('mysql2');
@@ -30,7 +25,8 @@ export default function handler(req, res) {
 
        
 
-      connection.query("INSERT INTO wse.students (`firstname`, `lastname`, `email`, `address`, `telephone`, `enrolledin`)  VALUES ('"+firstName+"', '"+lastName+"', '"+email+"', '"+address+"', '"+telephone+"', '"+enrollid+"')",
+      connection.query("DELETE FROM wse.students WHERE id='"+sid+"'",
+      
 
     
       function(err, results, fields) {
