@@ -8,7 +8,7 @@ export default function getENrolledSTudents(req, res) {
    let currentID = req.query.id;
    
   
-   console.log(currentID);
+   
   
   
   
@@ -42,6 +42,14 @@ export default function getENrolledSTudents(req, res) {
        
       }
     );
+
+    
+
+  
+
+   
+    
+  
  
 
 

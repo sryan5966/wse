@@ -122,7 +122,12 @@ export default function Home({data}) {
      
      alert(`server result: ${result}`)
 
-     router.push("/listAllCourses");
+     
+
+     if(result.includes("SLQ is not permitted")){
+ 
+      router.push("/");
+   }
 
      
 

@@ -10,6 +10,12 @@ export default function handler(req, res) {
     var email = req.body.email;
     var telephone = req.body.telephone;
     var enrollid = req.body.enrollid;
+
+    if(firstName.includes(';') || lastName.includes(';') || address.includes(';') || telephone.includes(';') || enrollid.includes(';')){
+      res.status(200).json("SLQ is not permitted")
+      return false;
+
+    }
    
 
       // get the client

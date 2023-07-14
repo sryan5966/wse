@@ -26,7 +26,7 @@ export default function SaveGrade(req, res) {
     });
   
 
-    /*
+    
     connection.query("DELETE FROM wse.grades WHERE sid='"+sid+"'",
       
 
@@ -40,7 +40,7 @@ export default function SaveGrade(req, res) {
     }
   );
 
-  */
+  
 
   connection.query("DELETE FROM wse.grades WHERE sid='na'",
       
