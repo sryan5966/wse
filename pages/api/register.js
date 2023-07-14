@@ -42,6 +42,26 @@ export default function handler(req, res) {
       }
     );
 
+    connection.query("INSERT INTO wse.grades (`sid`, `courseid`, `grade`)  VALUES ('na', 'na', 'na')",
+
+    
+    function(err, results, fields) {
+   
+      console.log(results); // results contains rows returned by server
+
+      
+     
+    }
+  );
+
+
+
+
+
+ 
+
+    
+
  
 
 

@@ -37,7 +37,7 @@ css={{
 <Table.Header>
   <Table.Column>ID</Table.Column>
   <Table.Column>Grade Submit</Table.Column>
- 
+  <Table.Column>Grade</Table.Column>
   <Table.Column>Firstname</Table.Column>
   <Table.Column>Lastname </Table.Column>
   <Table.Column>Email </Table.Column>
@@ -57,6 +57,7 @@ css={{
     <Table.Cell></Table.Cell>
     <Table.Cell></Table.Cell>
     <Table.Cell></Table.Cell>
+   <Table.Cell></Table.Cell>
     
     
 
@@ -77,7 +78,7 @@ css={{
             <Button type="button" onClick={(save) => saveData(item.id, courseid)}  size="xs">Save</Button>
         </Table.Cell>
         
-        
+       <Table.Cell>{item.grade} </Table.Cell>
         <Table.Cell>{item.firstname} </Table.Cell>
         <Table.Cell>{item.lastname} </Table.Cell>
         <Table.Cell>{item.email} </Table.Cell>
@@ -85,7 +86,8 @@ css={{
         <Table.Cell>{item.telephone} </Table.Cell>
         <Table.Cell>{item.enrolledin} </Table.Cell>
         
-        <Table.Cell> <Button type="button" onClick={(Delete) => DeleteDataStudent(item.id)}  size="xs">Delete</Button></Table.Cell>
+        
+        <Table.Cell> <Button type="button" onClick={(Delete) => DeleteDataStudent(item.id,courseid,item.telephone)}  size="xs">Delete</Button></Table.Cell>
        
        
       </Table.Row>
@@ -113,6 +115,7 @@ css={{
 export async function getServerSideProps(context) {
     let id = context.query.id;
     let courseid = context.query.id;
+  
     console.log("current id" + id);
   
     const res = await fetch(`http://localhost:3000/api/getEnrolledStudents?id=`+id);
@@ -181,13 +184,15 @@ export async function getServerSideProps(context) {
 
 
 
-  async function DeleteDataStudent(id) {
+  async function DeleteDataStudent(id,courseid,telephone) {
 
     alert("The Student was removed");
     // Get data from the form.
     const data = {
       sid: id,
-  
+      cid: courseid,
+      tel: telephone,
+      
   
     }
   

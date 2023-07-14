@@ -6,8 +6,9 @@ export default function getENrolledSTudents(req, res) {
 
 
    let currentID = req.query.id;
+   
   
-  
+   console.log(currentID);
   
   
   
@@ -26,31 +27,24 @@ export default function getENrolledSTudents(req, res) {
   
   
   
-  connection.query(
-    "SELECT * from students where enrolledin = '"+currentID+"';",
-    function(err, results, fields) {
-
-        console.log(results);
-   
-      res.status(200).json(results);
+    connection.query(
+      "SELECT * from students, grades where enrolledin = '"+currentID+"';",
+      function(err, results, fields) {
   
-   
-  
-      
+          console.log(results);
      
+        res.status(200).json(results);
+    
      
-    }
-  );
+    
+        
+       
+       
+      }
+    );
+ 
 
-  
-  
-  
-  
-  
-  
-  
-  
-      
+
       
   }
       
