@@ -26,7 +26,7 @@ export default function handler(req, res) {
 
 
 
-   /*
+   
       connection.query("DELETE FROM wse.grades WHERE id='"+sid+"'",
       
 
@@ -39,7 +39,7 @@ export default function handler(req, res) {
        
       }
     );
-       */
+       
 
       connection.query("DELETE FROM wse.students WHERE telephone='"+telephone+"'",
       
