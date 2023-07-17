@@ -11,11 +11,28 @@ export default function handler(req, res) {
     var telephone = req.body.telephone;
     var enrollid = req.body.enrollid;
 
+    console.log(enrollid);
+    
+    if((enrollid == 1) || (enrollid == 2) || (enrollid == 3)) {
+     
+      
+    
+   
+
     if(firstName.includes(';') || lastName.includes(';') || address.includes(';') || telephone.includes(';') || enrollid.includes(';')){
       res.status(200).json("SLQ is not permitted")
       return false;
 
     }
+
+    if(firstName ==  '' || lastName ==  '' || address ==  '' || telephone ==  '' || enrollid ==  ''){
+      res.status(200).json("Inputs must not be empty")
+      return false;
+
+    }
+
+   
+   
    
 
       // get the client
@@ -62,19 +79,13 @@ export default function handler(req, res) {
 
 
 
-
-
- 
-
-    
-
- 
-
-
-    
-  
-
-   
-      
   }
-      
+
+
+  else{
+    res.status(200).json("Course ID must be 1, 2 or 3");
+    console.log("Fail");
+    return false;
+    }
+
+}

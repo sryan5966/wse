@@ -9,9 +9,12 @@ export default function handler(req, res) {
     const username = req.body.username;
     const pass = req.body.password;
   
-    console.log("username is: "+ username);
-    console.log("password  is: "+ pass);
-  
+    
+    if(username ==  '' || pass ==  ''){
+      res.status(200).json("Inputs must not be empty")
+      return false;
+
+    }
   
   
      

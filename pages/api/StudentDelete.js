@@ -55,7 +55,7 @@ export default function handler(req, res) {
     );
 
   
-
+/*
     connection.query("DELETE FROM wse.grades WHERE sid='na'",
       
 
@@ -70,7 +70,7 @@ export default function handler(req, res) {
   );
 
  
-
+*/
 
     
   

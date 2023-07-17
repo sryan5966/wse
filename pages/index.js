@@ -73,7 +73,19 @@ export default function Home({data}) {
      
      alert(`server result: ${result}`)
 
-     router.push("/listAllCourses");
+     
+
+   
+
+   if(result.includes("Inputs must not be empty") || result.includes("fail")){
+ 
+    return false; 
+  }
+
+  else{
+
+    router.push("/listAllCourses");;
+  }
 
   }
 
@@ -124,9 +136,9 @@ export default function Home({data}) {
 
      
 
-     if(result.includes("SLQ is not permitted")){
+     if(result.includes("SLQ is not permitted") || result.includes("Inputs must not be empty")){
  
-      router.push("/");
+      return false; 
    }
 
      
@@ -220,9 +232,9 @@ Register
            <Spacer y={2} />
 
            <form onSubmit={handleSubmit}>
-           <Input id="username" placeholder="username"/>
+           <Input id="username" labelPlaceholder="username*"/>
            <Spacer y={2} />
-           <Input id="password" placeholder="Password"/>
+           <Input id="password" labelPlaceholder="Password*"/>
            <Spacer y={2} />
            <Button type="submit" color="secondary" auto>
                       Login
