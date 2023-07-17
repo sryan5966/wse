@@ -53,7 +53,7 @@ export default function Home({data}) {
     
      const JSONdata = JSON.stringify(data)
  
-     const endpoint = '/api/login'
+     const endpoint = 'http://localhost:3000/api/login'
 
      
      const options = {
@@ -84,7 +84,7 @@ export default function Home({data}) {
 
   else{
 
-    router.push("/listAllCourses");;
+    router.push("http://localhost:3000/listAllCourses");;
   }
 
   }
@@ -114,7 +114,7 @@ export default function Home({data}) {
     
      const JSONdata = JSON.stringify(data)
  
-     const endpoint = '/api/register'
+     const endpoint = 'http://localhost:3000/api/register'
 
      
      const options = {
@@ -171,15 +171,34 @@ export default function Home({data}) {
 
     <NextUIProvider theme={theme}>
       
-<Grid.Container gap={2} justify="center">
-      <Grid xs={4}>
-      
-      </Grid>
+<Grid.Container gap={5} justify="center">
+<Grid xs={4}>
+        
+
+
+        <Card css={{ w: '75%', $$cardColor: '$colors$primary' }}>
+          <Card.Body>
+            <Text h6 size={15} color="white" css={{ mt: 0 }}>
+             Find our chat here
+             
+             
+            </Text>
+            
+            <form>
+            <Button type="submit" color="secondary" auto><a href='http://localhost:3000/chat' style={{color:'white'}}> Chat Here</a>
+           
+</Button>
+</form>
+          </Card.Body>
+        </Card>
+  
+  
+        </Grid>
       <Grid xs={4}>
         
 
 
-      <Card css={{ h: "$58", w: "$100", $$cardColor: '$colors$primary' }}>
+      <Card css={{  w: '75%', $$cardColor: '$colors$primary' }}>
         <Card.Body>
           <Text h6 size={15} color="white" css={{ mt: 0 }}>
            Register a student to the system
@@ -225,7 +244,7 @@ Register
         
 
 
-      <Card css={{ h: "$58", w: "$100", $$cardColor: '$colors$primary' }}>
+      <Card css={{  w: '75%', $$cardColor: '$colors$primary' }}>
         <Card.Body>
           <Text h6 size={15} color="white" css={{ mt: 0 }}>
            Login to system

@@ -11,7 +11,32 @@ import { Input } from "@nextui-org/react";
 
 export default function Chat({data}) {
 
+  async function callChatPage(){
+
+
+    const options = {
+    
+     method: 'POST',
+    
+     headers: {
+       'Content-Type': 'application/json',
+     },
+    
+     body: '',
+   }
  
+   const response = await fetch('http://localhost:3000/api/getChats', options)
+ 
+   const result = await response.json()
+
+  console.log("chat page result: " + result );
+
+  
+  document.getElementById('chatlog').textContent = result;
+  
+   }
+
+  
   async function handleSubmit(event){
   
    
@@ -30,7 +55,7 @@ export default function Chat({data}) {
 
      alert(JSONdata);
  
-     const endpoint = '/api/saveChat'
+     const endpoint = 'http://localhost:3000/api/saveChat'
 
      
      const options = {
@@ -52,27 +77,26 @@ export default function Chat({data}) {
 
      
 
-     
-
   }
 
 
+  setInterval(() => {console.log("log");
+
+  callChatPage();
+
+//end
+}, 1000);
   return (
     
     
     <NextUIProvider theme={theme}>
 
-<Image
-      width={520}
-      height={580}  
-      src="https://www.krispykreme.ie/media/wysiwyg/Vegan_2022/Vegan-Homepage-Driver-22.png"
-      alt="Default Image"
-      objectFit="contain"
-    />
+
 
 <Card css={{ h: "$58", w: "$100", $$cardColor: '$colors$primary' }}>
         <Card.Body>
-          <textarea label="Chat Log" placeholder=""/>
+        Chat Log
+          <textarea label="Chat Log" id="chatlog"/>
           
       
           <Spacer y={1.6}/>
@@ -81,10 +105,10 @@ export default function Chat({data}) {
       
           <form onSubmit={handleSubmit}>
            <Spacer y={2} />
-<Input labelPlaceholder="" initialValue="" id="username" />
+<Input label="username" initialValue="" id="username" />
 
 <Spacer y={2} />
-<Input labelPlaceholder="" initialValue="" id="comment" />
+<Input label="comment" initialValue="" id="comment" />
 <Spacer y={2} />
 
 
@@ -109,67 +133,6 @@ Send
 
 
  
-    <Table
-
-aria-label="Example table with static content"
-css={{
-  height: "auto",
-  minWidth: "100%",
-
-}}>
-
-<Table.Header>
-  <Table.Column>ID</Table.Column>
-  <Table.Column>Title</Table.Column>
-  <Table.Column>Description </Table.Column>
-  <Table.Column>NFQ </Table.Column>
-  <Table.Column>Year </Table.Column>
-  <Table.Column>Option to view</Table.Column>
-  <Table.Column>Option to Delete</Table.Column>
-</Table.Header>
-<Table.Body >
-  <Table.Row key="1">
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-    <Table.Cell></Table.Cell>
-
-  </Table.Row>
-
-
-  {
-
-    data &&
-    data.map((item, i) => (
-      // print out the table from the JSON we got
-      // from the API
-
-      <Table.Row key="1">
-
-        <Table.Cell>{item.id} </Table.Cell>
-        <Table.Cell>{item.title} </Table.Cell>
-        <Table.Cell>{item.description} </Table.Cell>
-        <Table.Cell>{item.nfq} </Table.Cell>
-        <Table.Cell>{item.courseyear} </Table.Cell>
-        
-        <Table.Cell><Link href={"/viewAll?id=" +item.id}>View</Link></Table.Cell>
-        <Table.Cell> <Button type="button" onClick={(Delete) => DeleteData(item.id)}  size="xs">Delete</Button></Table.Cell>
-      </Table.Row>
-
-
-
-
-
-
-    ))
-  }
-
-</Table.Body>
-</Table>
-   
 
       
     </NextUIProvider>

@@ -153,7 +153,7 @@ export async function getServerSideProps(context) {
   const JSONdata = JSON.stringify(data)
 
   // API endpoint where we send form data.
-  const endpoint = '/api/saveGrade'
+  const endpoint = 'http://localhost:3000/api/saveGrade'
 
 
 
@@ -200,7 +200,7 @@ export async function getServerSideProps(context) {
     const JSONdata = JSON.stringify(data)
   
     // API endpoint where we send form data.
-    const endpoint = '/api/StudentDelete'
+    const endpoint = 'http://localhost:3000/api/StudentDelete'
   
   
   

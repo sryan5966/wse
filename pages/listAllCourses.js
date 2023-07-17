@@ -173,7 +173,7 @@ export async function getServerSideProps(context) {
   const JSONdata = JSON.stringify(data)
 
   // API endpoint where we send form data.
-  const endpoint = '/api/delete'
+  const endpoint = 'http://localhost:3000/api/delete'
 
 
 
