@@ -8,6 +8,13 @@ export default function handler(req, res) {
     // Get just the username and password and put them into variables.
     const username = req.body.username;
     const pass = req.body.password;
+
+    if(username.includes(';') || pass.includes(';')){
+      res.status(200).json("SLQ is not permitted")
+      return false;
+
+    }
+
   
     
     if(username ==  '' || pass ==  ''){
@@ -42,12 +49,12 @@ export default function handler(req, res) {
       // sending back the result.
       if(results.length == 1){
   
-        res.status(200).json("ok");
+        res.status(200).json("Login Successful")
     
   
       } else {
        
-        res.status(200).json("fail");
+        res.status(200).json("The username or password is incorrect");
   
       }
      

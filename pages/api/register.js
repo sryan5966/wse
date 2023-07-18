@@ -72,7 +72,7 @@ export default function handler(req, res) {
    
       console.log(results); // results contains rows returned by server
 
-      
+      res.status(200).json("The Student was registered")
      
     }
   );

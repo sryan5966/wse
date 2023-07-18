@@ -178,7 +178,12 @@ export async function getServerSideProps(context) {
   // If server returns the name submitted, that means the form works.
   const result = await response.json()
 
-    alert('Saved!');
+
+
+
+
+  
+  alert(`server result: ${result}`)
   }
 
 

@@ -31,7 +31,7 @@ export default function Home({data}) {
 
   async function handleSubmit(event){
   
-    alert("The form was submitted");
+    
     event.preventDefault();
  
 
@@ -77,7 +77,7 @@ export default function Home({data}) {
 
    
 
-   if(result.includes("Inputs must not be empty") || result.includes("fail")){
+   if(result.includes("Inputs must not be empty") || result.includes("SLQ is not permitted") || result.includes("The username or password is incorrect")){
  
     return false; 
   }
@@ -96,7 +96,7 @@ export default function Home({data}) {
 
   async function handleSubmitReg(event){
   
-    alert("The Student was registered");
+ 
     event.preventDefault();
  
  
